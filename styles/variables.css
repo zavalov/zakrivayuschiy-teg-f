@@ -1,1 +1,45 @@
-/* В этом файле будут храниться все значения переменных в исходном состоянии, а так же их изменения в зависимости от ширины устройства */
+:root {
+    --main-font: 'Inter-Variable', serif;
+    --decorative-font: 'Press Start 2P', fantasy;
+    --content-box-width: 700px;
+    --page-bg: repeating-linear-gradient(to right, #d3d3d3, #d3d3d3 2px, transparent 2px, transparent 4px),
+               repeating-linear-gradient(to top, #d3d3d3, #d3d3d3 2px, transparent 2px, transparent 4px),
+               linear-gradient(to bottom, #e7e7e7 0.01%, #1a1a1a);
+    --content-box-bg: rgba(255, 255, 255, 1);
+    --button-bg: rgba(255, 255, 255, 1);
+    --stamp-shadow: rgba(255, 255, 255, 1);
+    --like-icon-on: red;
+    --like-icon-off: rgba(0, 0, 0, 1);
+}
+
+@media (max-width: 700px) {
+    :root {
+        --content-box-width: 100%;
+    }
+}
+
+@media (max-width: 375px) {
+    .header {
+        padding: 112px 0;
+        margin: 102px 0;
+    }
+    .header__title {
+        padding-bottom: 8px;
+    }
+    .card__stamp {
+        position: absolute;
+        top: 23px;
+        right: 11px;
+    }
+    .footer__save-button {
+        width: 306px;
+        height: 84px;
+        margin-top: 0px;
+        flex-direction: column;
+        padding: 10px;
+    }
+    .footer__save-button svg {
+        height: 28px;
+        width: 28px;
+    }
+}

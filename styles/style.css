@@ -1,6 +1,6 @@
 .page {
   font-family: var(--main-font), sans-serif;
-  font-variation-settings: 'wght' 700;
+  font-variation-settings: 'wght' var(--main-font-text);
   margin: auto;
   background-color: #c0bebe;
   background-image: var(--page-bg);
@@ -54,6 +54,7 @@
 
 .card__title {
   font-size: clamp(1.125rem, 1.125rem + 0vw, 1.125rem);
+  font-variation-settings: 'wght' var(--main-font-title);
   padding: 5px 10px;
 }
 
@@ -70,6 +71,7 @@
   background-size: cover;
   inline-size: 100%;
   aspect-ratio: 1 / 1;
+  z-index: 0;
 }
 
 .image__grayscale {
@@ -108,12 +110,15 @@
   position: absolute;
   top: 25px;
   right: 25px;  
-  z-index: 1;
+  z-index: 5;
   opacity: 0.5;
   font-family: var(--decorative-font);
   font-size: 14px;  
   font-weight: 400;
-  text-shadow: 0 0 1px var(--stamp-shadow);
+  text-shadow: -1px 0 var(--stamp-shadow), 
+                0 1px var(--stamp-shadow), 
+                1px 0 var(--stamp-shadow), 
+                0 -1px var(--stamp-shadow);
 }
 
 @supports ((text-stroke: 1px var(--stamp-shadow)) 
@@ -124,20 +129,19 @@ or (-webkit-text-stroke: 1px var(--stamp-shadow))) {
     -webkit-text-stroke: 1px var(--stamp-shadow);
     mix-blend-mode: hard-light;
   }
-} 
+}
 
 .card__text {
   display: grid;
   font-size: 18px;
   line-height: 21px;
   gap: 26px;
-  padding: 25px; 
-  font-variation-settings: normal;
+  padding: 25px;
 }
 
 .card__buttons {
+  display: flex;  
   justify-content: end;
-  display: flex;
   padding: 0 25px 25px 25px;
 }
 
@@ -189,11 +193,19 @@ or (-webkit-text-stroke: 1px var(--stamp-shadow))) {
 }
 
 .card__icon-button {
-  border: none;
-  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid transparent;
+  max-height: 38px;
   background-color: var(--button-bg);
   transition: fill 0.3s linear;
   cursor: pointer;
+}
+
+.card__icon-button svg {
+  margin: auto;
+  display: block;
 }
 
 .card__icon-button:focus {
@@ -201,7 +213,7 @@ or (-webkit-text-stroke: 1px var(--stamp-shadow))) {
 }
 
 .card__icon-button:focus-visible {
-  box-shadow: 2px 2px 0px 0px #000;
+  border-color: #000;
 } 
 
 .contour {
@@ -220,8 +232,8 @@ or (-webkit-text-stroke: 1px var(--stamp-shadow))) {
 }
 
 .footer__save-button {
-  width: clamp(306px, 335px, 335px);
-  height: clamp(51px, 51px, 84px);
+  width: 335px;
+  height: 51px;
   display: flex;
   margin-top: 2px;
   margin-bottom: 105px;
@@ -236,11 +248,10 @@ or (-webkit-text-stroke: 1px var(--stamp-shadow))) {
   mix-blend-mode: difference;
 }
 
-.dialog__popup {
+.dialog__popup[open] {
   padding: 30px;
   max-inline-size: 357px;
   font-family: var(--decorative-font);
-  font-variation-settings: normal;
   font-size: 14px;
   line-height: 21px;
   text-transform: uppercase;
@@ -277,4 +288,38 @@ body:has(.dialog__popup[open]) {
 
 .dialog__popup .button__text {
   inline-size: 234px;
+}
+
+@media (max-width: 700px) {
+  :root {
+    --content-box-width: 100%;
+  }
+}
+
+@media (max-width: 375px) {
+  .header { /*
+    padding: 112px 0;
+    margin: 102px 0;   у меня по PixelPerfect сходятся эти значения */
+    padding: 120px 0;      
+    margin: 100px 0;
+  }
+  .header__title {
+    padding-bottom: 8px;
+  }
+  .card__stamp {
+    position: absolute;
+    top: 23px;
+    right: 11px;
+  }
+  .footer__save-button { 
+    width: 306px;
+    height: 84px;
+    margin-top: 0px;      
+    flex-direction: column;
+    padding: 10px;
+  }
+  .footer__save-button svg {
+    height: 28px;
+    width: 28px;
+  }
 }

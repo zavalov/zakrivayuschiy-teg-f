@@ -310,12 +310,14 @@ body:has(.dialog__popup[open]) {
 }
 
 @media (max-width: 375px) {
-  .header { /*
+  /*
+  .header { 
     padding: 112px 0;
     margin: 102px 0;   у меня по PixelPerfect сходятся эти значения
-    padding: 120px 0; */ /*      
-    margin: 100px 0; */
-  }
+    padding: 120px 0;  
+    margin: 100px 0; 
+  } */
+   
   .header__title {
     padding-bottom: 8px;
   }

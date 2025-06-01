@@ -24,8 +24,10 @@
   justify-content: center;
   align-items: center;
   font-family: var(--decorative-font);
-  margin: 100px 0;  
-  padding: 128px 0;
+  margin: 100px 0;
+  padding: clamp(112px, 9vw, 128px) clamp(14px, 8vw, 120.5px);
+  max-inline-size: clamp(375px, 49vw, 700px);
+  margin-block: 100px;
 }
 
 .header__title {
@@ -192,20 +194,24 @@ or (-webkit-text-stroke: 1px var(--stamp-shadow))) {
   justify-items: center;
 }
 
+
 .card__icon-button {
   display: flex;
   align-items: center;
   justify-content: center;
   border: 2px solid transparent;
-  max-height: 38px;
+  max-block-size: 38px;
+  max-inline-size: 38px;
   background-color: var(--button-bg);
   transition: fill 0.3s linear;
   cursor: pointer;
+  margin-right: 6px;
 }
 
 .card__icon-button svg {
-  margin: auto;
+  margin: none;
   display: block;
+  flex-shrink: 0;
 }
 
 .card__icon-button:focus {
@@ -213,6 +219,7 @@ or (-webkit-text-stroke: 1px var(--stamp-shadow))) {
 }
 
 .card__icon-button:focus-visible {
+  /* aspect-ratio: 1 / 1; */
   border-color: #000;
 } 
 
@@ -250,6 +257,7 @@ or (-webkit-text-stroke: 1px var(--stamp-shadow))) {
 
 .dialog__popup[open] {
   padding: 30px;
+  align-items: center;
   max-inline-size: 357px;
   font-family: var(--decorative-font);
   font-size: 14px;
@@ -268,10 +276,13 @@ body:has(.dialog__popup[open]) {
 
 .dialog__popup-box {
   display: grid;
-  grid-template-columns: 39px 1fr;
-  gap: 26px 15px;
+  grid-template-columns: min-content auto;
+  grid-template-rows: min-content min-content;
+  column-gap: 20px;
+  row-gap: 30px;
   align-items: center;
   justify-items: center;
+  padding-right: 40px;
 }
 
 .dialog__popup-box svg {
@@ -282,8 +293,10 @@ body:has(.dialog__popup[open]) {
 .dialog__close-button {
   grid-column: 1 / 3;
   inline-size: 293px;
-  block-size: 38px;
+  min-block-size: 38px;
+  align-items: center;
   text-transform: uppercase;
+  align-self: center;
 }
 
 .dialog__popup .button__text {
@@ -299,15 +312,14 @@ body:has(.dialog__popup[open]) {
 @media (max-width: 375px) {
   .header { /*
     padding: 112px 0;
-    margin: 102px 0;   у меня по PixelPerfect сходятся эти значения */
-    padding: 120px 0;      
-    margin: 100px 0;
+    margin: 102px 0;   у меня по PixelPerfect сходятся эти значения
+    padding: 120px 0; */ /*      
+    margin: 100px 0; */
   }
   .header__title {
     padding-bottom: 8px;
   }
   .card__stamp {
-    position: absolute;
     top: 23px;
     right: 11px;
   }
@@ -321,5 +333,18 @@ body:has(.dialog__popup[open]) {
   .footer__save-button svg {
     height: 28px;
     width: 28px;
+  }
+  .dialog__popup[open] {
+    max-inline-size: 341px;
+    min-block-size: 195px;
+    padding: 32px 42px;
+  }
+  .dialog__close-button {
+    position: absolute;
+    top: 125px;
+    left: 42px;
+    bottom: 32px;
+    right: 42px;
+    inline-size: 253px;
   }
 }

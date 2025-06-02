@@ -24,9 +24,9 @@
   justify-content: center;
   align-items: center;
   font-family: var(--decorative-font);
-  margin: 100px 0;
+  margin-block: 100px 0;
   padding: clamp(112px, 9vw, 128px) clamp(14px, 8vw, 120.5px);
-  max-inline-size: clamp(375px, 49vw, 700px);
+  /* max-inline-size: clamp(375px, 49vw, 700px); */
   margin-block: 100px;
 }
 
